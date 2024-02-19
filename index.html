@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <style>
+      form {
+        margin: 0 auto;
+        width: 70%;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        border: 1px solid black;
+        padding: 10px;
+      }
+      #color {
+        margin-top: 30px;
+        width: 100%;
+        height: 15px;
+        border: 1px solid black;
+        background: linear-gradient(to right, red, yellow, green, yellow, red);
+      }
+      input {
+        padding: 20px;
+        width: 100%;
+      }
+    </style>
+    <script>
+      function calculationBMI() {
+        let weight = calculation.weight.value;
+        let growth = calculation.growth.value;
+        let bmi = weight / ((growth / 10000) * growth);
+        document.getElementById("result").innerText =
+          "Ваш ИМТ =" + bmi.toFixed(2);
+        calculation.range.value = bmi;
+        if (bmi < 18.5) {
+          document.getElementById("cathegory").innerText = "Недостаточный вес";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+          document.getElementById("cathegory").innerText = "Здоровый вес";
+        } else if (bmi >= 25.0 && bmi <= 29.9) {
+          document.getElementById("cathegory").innerText = "Избыточный вес";
+        } else {
+          document.getElementById("cathegory").innerText = "Ожирение";
+        }
+      }
+    </script>
+    <title>BMI Калькулятор</title>
+  </head>
+  <body>
+    <h1 align="center" >BMI Калькулятор для определения индекса массы тела</h1>
+    <p align="center" > Используется, чтобы дать представление о том, является ли вес избыточным или идеальным для роста. </p>
+    <form name="calculation">
+      Вес
+      <input type="number" id="weight" onchange="calculationBMI()" value="70" />
+      <br />
+      Рост
+      <input
+        type="number"
+        id="growth"
+        onchange="calculationBMI()"
+        value="180"
+      />
+      <div id="color"></div>
+      <input type="range" id="range" disabled min="18" max="30" />
+      <p id="result"></p>
+      <p id="cathegory"></p>
+    </form>
+  </body>
+</html>
